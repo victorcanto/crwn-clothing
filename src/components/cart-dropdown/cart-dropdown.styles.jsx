@@ -30,7 +30,8 @@ export const CartItems = styled.div`
   height: 240px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 export const EmptyMessage = styled.span`
