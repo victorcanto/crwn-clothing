@@ -19,15 +19,15 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener(async (user) => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
-        await createUserDocumentFromAuth(user);
+        createUserDocumentFromAuth(user);
       }
       dispatch(setCurrentUser(user));
     });
 
     return unsubscribe;
-  }, [dispatch]);
+  }, []);
 
   return (
     <Routes>
