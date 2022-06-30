@@ -31,6 +31,10 @@ export const QuantityContainer = styled(Name)`
 export const RemoveButton = styled.div`
   padding-left: 12px;
   cursor: pointer;
+
+  @media screen and (max-width: 50em) {
+    padding-left: 0;
+  }
 `;
 
 export const CheckoutItemContainer = styled.div`

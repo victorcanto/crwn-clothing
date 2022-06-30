@@ -21,6 +21,13 @@ export const ProductCardContainer = styled.div`
     position: absolute;
     top: 255px;
     display: none;
+
+    @media screen and (max-width: 50em) {
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+      padding: 0 10px;
+    }
   }
 
   &:hover {
@@ -33,6 +40,18 @@ export const ProductCardContainer = styled.div`
       display: flex;
     }
   }
+
+  @media screen and (max-width: 50em) {
+    &:hover {
+      img {
+        opacity: unset;
+      }
+
+      button {
+        opacity: unset;
+      }
+    }
+  }
 `;
 
 export const ProductCardFooter = styled.div`
@@ -41,13 +60,25 @@ export const ProductCardFooter = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+
+  @media screen and (max-width: 50em) {
+    font-size: 16px;
+  }
 `;
 
 export const Name = styled.span`
   width: 90%;
   margin-bottom: 15px;
+
+  @media screen and (max-width: 50em) {
+    width: fit-content;
+  }
 `;
 
 export const Price = styled.span`
   width: 10%;
+
+  @media screen and (max-width: 50em) {
+    width: fit-content;
+  }
 `;
