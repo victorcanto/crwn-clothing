@@ -9,7 +9,8 @@ import { CategoryItem } from '../categories/categories.types';
 const checkCartItemExistence = (
   cartItems: CartItem[],
   productToCheck: CategoryItem
-): CartItem => cartItems.find((cartItem) => cartItem.id === productToCheck.id);
+): CartItem =>
+  cartItems.find((cartItem) => cartItem.id === productToCheck.id) as CartItem;
 
 const getCartItemsWithUpdatedQuantity = (
   cartItems: CartItem[],
