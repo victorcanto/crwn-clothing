@@ -47,18 +47,16 @@ export function* signInWithGoogle() {
     const { user } = yield* call(signInWithGooglePopup);
     yield* call(getSnapshotFromUserAuth, user);
   } catch (error) {
-    yield* put(signInFailed(error));
+    yield* put(signInFailed(error as Error));
   }
 }
 
-export function* signInWithEmail({
-  payload: { email, password },
-}: EmailSignInStart) {
+export function* signInWithEmail({ payload }: EmailSignInStart) {
   try {
     const userCredential = yield* call(
       signInAuthUserWithEmailAndPassword,
-      email,
-      password
+      payload?.email as string,
+      payload?.password as string
     );
 
     if (userCredential) {
@@ -80,18 +78,17 @@ export function* isUserAuthenticated() {
   }
 }
 
-export function* signUp({
-  payload: { email, password, displayName },
-}: SignUpStart) {
+export function* signUp({ payload }: SignUpStart) {
   try {
     const userCredential = yield* call(
       createAuthUserWithEmailAndPassword,
-      email,
-      password
+      payload?.email as string,
+      payload?.password as string
     );
 
     if (userCredential) {
       const { user } = userCredential;
+      const displayName = payload?.displayName as string;
       yield* put(signUpSucess(user, { displayName }));
     }
   } catch (error) {
@@ -104,14 +101,16 @@ export function* signOut() {
     yield* call(signOutUser);
     yield* put(signOutSuccess());
   } catch (error) {
-    yield* put(signOutFailed(error));
+    yield* put(signOutFailed(error as Error));
   }
 }
 
-export function* signInAfterSignUp({
-  payload: { user, additionalDetails },
-}: SignUpSucess) {
-  yield* call(getSnapshotFromUserAuth, user, additionalDetails);
+export function* signInAfterSignUp({ payload }: SignUpSucess) {
+  yield* call(
+    getSnapshotFromUserAuth,
+    payload?.user as User,
+    payload?.additionalDetails as AdditionalInformation
+  );
 }
 
 export function* onGoogleSignInStart() {
